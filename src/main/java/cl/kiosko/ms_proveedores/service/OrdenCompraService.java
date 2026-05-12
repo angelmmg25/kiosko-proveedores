@@ -5,14 +5,12 @@ import cl.kiosko.ms_proveedores.model.OrdenCompra;
 import cl.kiosko.ms_proveedores.model.Proveedor;
 import cl.kiosko.ms_proveedores.repository.OrdenCompraRepository;
 import cl.kiosko.ms_proveedores.repository.ProveedorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class OrdenCompraService {
-    @Autowired
 
     private final OrdenCompraRepository ordenRepo;
     private final ProveedorRepository proveedorRepo;
@@ -42,5 +40,27 @@ public class OrdenCompraService {
 
     public List<OrdenCompra> porProveedor(Long proveedorId) {
         return ordenRepo.findByProveedorId(proveedorId);
+    }
+
+    public OrdenCompra actualizar(Long id, OrdenCompraDTO dto) {
+        OrdenCompra orden = ordenRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Orden no encontrada"));
+
+        Proveedor proveedor = proveedorRepo.findById(dto.getProveedorId())
+                .orElseThrow(() -> new RuntimeException("Proveedor no existe"));
+
+        orden.setDescripcion(dto.getDescripcion());
+        orden.setCantidad(dto.getCantidad());
+        orden.setPrecioUnitario(dto.getPrecioUnitario());
+        orden.setProveedor(proveedor);
+
+        return ordenRepo.save(orden);
+    }
+
+    public void eliminar(Long id) {
+        if (!ordenRepo.existsById(id)) {
+            throw new RuntimeException("Orden no existe");
+        }
+        ordenRepo.deleteById(id);
     }
 }

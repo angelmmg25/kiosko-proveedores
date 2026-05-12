@@ -32,4 +32,14 @@ public class OrdenCompraController {
     public List<OrdenCompra> porProveedor(@PathVariable Long id) {
         return service.porProveedor(id);
     }
+
+    @PutMapping("/{id}")
+    public OrdenCompra actualizar(@PathVariable Long id, @Valid @RequestBody OrdenCompraDTO dto) {
+        return service.actualizar(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        service.eliminar(id);
+    }
 }

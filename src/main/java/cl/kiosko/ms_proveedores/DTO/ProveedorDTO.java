@@ -10,17 +10,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProveedorDTO {
 
-    @NotBlank(message = "")
+    @NotBlank(message = "El nombre de la empresa es obligatorio")
     private String nombreEmpresa;
 
-    @NotBlank
+    @NotBlank(message = "El RUT es obligatorio")
     private String rut;
 
+    @NotBlank(message = "La dirección es obligatoria")
     private String direccion;
+
+    @NotBlank(message = "El teléfono es obligatorio")
     private String telefono;
 
-    @Email
+    @NotBlank(message = "El email es obligatorio")
+    @Email(message = "Debe ser un correo válido")
     private String email;
 
+    @NotBlank(message = "El producto es obligatorio")
     private String producto;
 }

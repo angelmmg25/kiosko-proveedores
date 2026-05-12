@@ -16,8 +16,13 @@ public class OrdenCompra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String descripcion;
+
+    @Column(nullable = false)
     private int cantidad;
+
+    @Column(nullable = false)
     private double precioUnitario;
 
     @ManyToOne(fetch = FetchType.LAZY)

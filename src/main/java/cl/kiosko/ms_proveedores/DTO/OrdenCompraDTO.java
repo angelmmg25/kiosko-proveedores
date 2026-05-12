@@ -6,15 +6,15 @@ import lombok.Data;
 @Data
 public class OrdenCompraDTO {
 
-    @NotBlank
+    @NotBlank(message = "La descripción es obligatoria")
     private String descripcion;
 
-    @Min(1)
+    @Min(value = 1, message = "La cantidad debe ser al menos 1")
     private int cantidad;
 
-    @Positive
+    @Positive(message = "El precio unitario debe ser mayor a 0")
     private double precioUnitario;
 
-    @NotNull
+    @NotNull(message = "El proveedor es obligatorio")
     private Long proveedorId;
 }

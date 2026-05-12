@@ -32,4 +32,14 @@ public class ProveedorController {
     public Proveedor obtener(@PathVariable Long id) {
         return service.obtener(id);
     }
+
+    @PutMapping("/{id}")
+    public Proveedor actualizar(@PathVariable Long id, @Valid @RequestBody ProveedorDTO dto) {
+        return service.actualizar(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        service.eliminar(id);
+    }
 }

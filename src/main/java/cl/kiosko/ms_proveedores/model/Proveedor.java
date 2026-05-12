@@ -24,16 +24,16 @@ public class Proveedor {
     @Column(nullable = false, unique = true)
     private String rut;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String direccion;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String telefono;
 
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String producto;
 
     @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL, orphanRemoval = true)
